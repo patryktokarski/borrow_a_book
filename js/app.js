@@ -1,9 +1,10 @@
 $(document).ready(function() {
     console.log('DOM zaladowany');
+    var endpoint = window.location + 'api/books.php';
     
     function loadBooks() {
         $('div.ajaxStatus').toggle();
-        $.get('http://localhost/borrow_a_book/api/books.php', function(json) {
+        $.get(endpoint, function(json) {
             $('table#ksiazki').find('tr.book').remove();
             $('table#ksiazki .info').remove();
             var ksiazki = JSON.parse(json);
@@ -68,7 +69,7 @@ $(document).ready(function() {
     function updateBook(authorVal, nameVal, book_descVal, book_idVal) {
         $('div.ajaxStatus').toggle();
 
-	$.post('http://localhost/borrow_a_book/api/books.php', {
+	$.post(endpoint, {
             author: authorVal, 
             name: nameVal, 
             book_desc: book_descVal, 
@@ -111,7 +112,7 @@ $(document).ready(function() {
         $('div.ajaxStatus').toggle();
         
         $.ajax({
-            url:'http://localhost/borrow_a_book/api/books.php',
+            url: endpoint,
             data: {author: authorVal, name: nameVal, book_desc: book_descVal},
             type:'PUT',
             dataType: 'json'
@@ -143,7 +144,7 @@ $(document).ready(function() {
 	$('div.ajaxStatus').toggle();
 
 	$.ajax({
-            url: 'http://localhost/borrow_a_book/api/books.php',
+            url: endpoint,
             data: {book_id: bookId},
             type: 'DELETE',
             dataType: 'json'
