@@ -7,6 +7,7 @@ $(document).ready(function() {
         $.get(endpoint, function(json) {
             $('table#ksiazki').find('tr.book').remove();
             $('table#ksiazki .info').remove();
+            $('table#ksiazki .editForm').remove();
             var ksiazki = JSON.parse(json);
             
             for (var i = 0; i < ksiazki.length; i++) {
