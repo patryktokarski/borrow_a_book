@@ -8,21 +8,21 @@ $(document).ready(function() {
             $('table#ksiazki').find('tr.book').remove();
             $('table#ksiazki .info').remove();
             $('table#ksiazki .editForm').remove();
-            var ksiazki = JSON.parse(json);
+            var books = JSON.parse(json);
             
-            for (var i = 0; i < ksiazki.length; i++) {
-                var ksiazka = $('<tr class="book" data-book-id='+ ksiazki[i].id + '>\n\
-                                <td class="title">'+ ksiazki[i].name +'</td>\n\
+            for (var i = 0; i < books.length; i++) {
+                var book = $('<tr class="book" data-book-id='+ books[i].id + '>\n\
+                                <td class="title">'+ books[i].name +'</td>\n\
                                 <td><a class="remove" href="#">Usun</a></td></tr>');
                 
-                $('table#ksiazki').append(ksiazka);
+                $('table#ksiazki').append(book);
                 
                 
-                var informacje = $('<div class="info" data-book-id="'+ksiazki[i].id+'" style = "display:none">\n\
-                                    <p> '+ ksiazki[i].author +'</p><p>'+ ksiazki[i].book_desc +'</p>\n\
+                var informations = $('<div class="info" data-book-id="'+books[i].id+'" style = "display:none">\n\
+                                    <p> '+ books[i].author +'</p><p>'+ books[i].book_desc +'</p>\n\
                                     <a class="edit" href="#">Edytuj</a></div>');
               
-                ksiazka.after(informacje);
+                book.after(informations);
                 
             }
             $('div.ajaxStatus').toggle();
