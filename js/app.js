@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    console.log('DOM zaladowany');
-    var endpoint = window.location + 'api/books.php';
+
+    var endpoint = window.location + "api/books.php";
     
     function loadBooks() {
         $('div.ajaxStatus').toggle();
