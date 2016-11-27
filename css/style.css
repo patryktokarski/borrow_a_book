@@ -1,11 +1,56 @@
 label {
     display: block;
+    color: white;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: medium;
 }
 
 body {
     font-family: Roboto, Helvetica, sans-serif;
     font-size: 10pt;
-    color: #2e2e2e;
+    background-image: url("library2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+input {
+    width: 100%;
+    padding: 5px 15px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type = text]:hover {
+    border-color: #412B16;
+}
+
+input[type = submit] {
+    width: 100%;
+    background-color: grey;
+    color: white;
+    padding: 10px 20px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+div.AddBookCont {
+    margin: auto;
+    border-radius: 20px;
+    background-color: rgba(65, 43, 22, 0.8);
+    padding: 25px;
+    width: 50%;
+
 }
 
 h1 {
@@ -18,42 +63,168 @@ h1 {
 }
 
 p {
-    margin-top: 0;
-    padding: 4pt;
-    color: #0f0f0f;
-}
-
-input[type="text"] {
-  margin-bottom: 5pt;
-
-}
-
-tr.editForm {
-  background-color: lime;
+    color: white;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 20px;
+    display: inline-block;
 }
 
 a.save, a.cancelSave {
-/*  color: white;*/
-  font-weight: bold;
-  text-decoration: underline;
+    /*  color: white;*/
+    font-weight: bold;
+    text-decoration: underline;
+    color: white;
+    text-align: center;
 }
 
 a.cancelSave {
-  color: red;
+    color: red;
 }
 
 div.ajaxStatus {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: green;
-  font-size:8pt;
-  color: #fff;
-  padding: 5pt;
-  display: none;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: #4CAF50;
+    font-size:8pt;
+    color: #fff;
+    padding: 5pt;
+    display: none;
+    width: 50px;
 }
 
 .saveForm, .cancelForm {
-    display: block;
-    margin: 5px;
+    
+    background-color: grey;
+    color: white;
+    padding: 2px 20px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    
 }
+
+div#MainTitle {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    position: fixed;
+    color: white;
+}
+
+div.book {
+    background-color: rgba(65, 43, 22, 0.8);
+    width: 50%;
+    margin: auto;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    padding: 0 20px;
+    
+}
+
+div.deleteBtn {
+    right: 10px;
+    text-align: right;
+    position: relative;
+    top: -9px;
+    z-index: 1;
+}
+
+.btn {
+    position: relative;
+    color: white;
+}
+
+span.titleSpan {
+    border: 1px;
+    border-color: white;
+    font-family: Helvetica;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    top: 10px;
+    left: 10px;
+    padding: 10px 10px;
+    z-index: 2;
+    padding-right: 40%;
+    cursor: pointer;
+  
+}
+
+span {
+    font-weight: bold;
+    font-family: Helvetica;
+    font-size: 16px;
+    color: white;
+    position: relative;
+    left: 10px;
+    padding: 10px 10px;
+}
+
+.editForm {
+    display:inline-block;
+    width: 100%;
+}
+
+a#refresh {
+    color: white;
+}
+
+.editBtn {
+    text-align: right;
+    position: relative;
+    right: 10px;
+    margin: 0px 0;
+    top: -10px;
+    
+}
+
+.removeBtn {
+
+    background-color: grey;
+    color: white;
+    padding: 2px 20px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.edit {
+    background-color: grey;
+    color: white;
+    padding: 2px 20px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.optionBtn {
+    margin: 10px 0;
+    text-align: center; 
+}
+
+.removeBtn:hover {
+    background-color: #45a049;
+}
+
+.cancelForm:hover {
+    background-color: #45a049;
+}
+
+.saveForm:hover {
+    background-color: #45a049;
+}
+
+.edit:hover {
+    background-color: #45a049;
+}
+
+
