@@ -26,7 +26,7 @@ $(document).ready(function() {
                 book.append(informations);
 
                 var editForm = $('<div class = "editForm" style = "display: none">\n\
-                                  <p>Formularz edycji</p><hr>\n\
+                                  <p>Edit</p><hr>\n\
                                   <label>Title:</label><input name = "name" value ="' + books[i].name + '">\n\
                                   <label>Author:</label><input name = "author" value ="' + books[i].author + '">\n\
                                   <label>Description:</label><input name = "book_desc" value ="' + books[i].book_desc + '">\n\
@@ -46,7 +46,12 @@ $(document).ready(function() {
     $('div#books').on('click', '.titleSpan',function() {
 
         var bookId = $(this).parent().data('book-id');
+
         $('[data-book-id=' + bookId + ']').find('div.info').slideToggle();
+
+        if ($('[data-book-id=' + bookId + ']').find('.editForm').val('display') != 'none') {
+            $('[data-book-id=' + bookId + ']').find('.editForm').slideUp();
+        }
     });
 
     $('div#books').on('click', '.edit', function(e) {
