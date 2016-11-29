@@ -3,6 +3,7 @@ $(document).ready(function() {
     var endpoint = window.location + "api/books.php";
     
     function loadBooks() {
+
         $('div.ajaxStatus').toggle();
         $.get(endpoint, function(json) {
             $('div#books').find('.book').remove();
@@ -16,7 +17,6 @@ $(document).ready(function() {
                               <div class="deleteBtn btn"><a class="removeBtn btn" href="#">DELETE</a></div></div>');
                 
                 $('div#books').append(book);
-                
                 
                 var informations = $('<div class="info" style = "display:none">\n\
                                     <div class="author"><span class = "author">' + books[i].author +'</span></div>\n\
@@ -35,8 +35,8 @@ $(document).ready(function() {
                                   </div>');
 
                 informations.append(editForm);
-                
             }
+
             $('div.ajaxStatus').toggle();
         });
     }  
@@ -46,11 +46,16 @@ $(document).ready(function() {
     $('div#books').on('click', '.titleSpan',function() {
 
         var bookId = $(this).parent().data('book-id');
-
         $('[data-book-id=' + bookId + ']').find('div.info').slideToggle();
-
         if ($('[data-book-id=' + bookId + ']').find('.editForm').val('display') != 'none') {
             $('[data-book-id=' + bookId + ']').find('.editForm').slideUp();
+            var title = $('[data-book-id=' + bookId + ']').find('.title').text();
+            var author = $('[data-book-id=' + bookId + ']').find('span.author').text();
+            var book_desc = $('[data-book-id=' + bookId + ']').find('span.desc').text();
+
+            $('[data-book-id =' + bookId + ']').find('input[name="author"]').val(author);
+            $('[data-book-id =' + bookId + ']').find('input[name="name"]').val(title);
+            $('[data-book-id =' + bookId + ']').find('input[name="book_desc"]').val(book_desc);
         }
     });
 
@@ -59,7 +64,6 @@ $(document).ready(function() {
         e.preventDefault();
         var bookId = $(this).parents('div.book').data('book-id');
         $('[data-book-id=' + bookId + ']').find('.editForm').slideDown();
-
     });
     
     function updateBook(authorVal, nameVal, book_descVal, book_idVal) {
@@ -96,7 +100,27 @@ $(document).ready(function() {
         var book_desc = $('[data-book-id =' + bookId + ']').find('input[name="book_desc"]').prop('value');
 
 	    updateBook(author, title, book_desc, bookId);
-    });    
+
+        var message = $('<span>Book updated</span>').fadeOut(5000);
+        $('div.AddBookCont').find('div.message').append(message);
+    });
+
+    $('div#books').on('keypress', '.editForm', function(event) {
+
+        if (event.which == 13) {
+
+            event.preventDefault();
+            var bookId = $(this).parents('div.book').data('book-id');
+            var author = $('[data-book-id =' + bookId + ']').find('input[name="author"]').prop('value');
+            var title = $('[data-book-id =' + bookId + ']').find('input[name="name"]').prop('value');
+            var book_desc = $('[data-book-id =' + bookId + ']').find('input[name="book_desc"]').prop('value');
+
+            updateBook(author, title, book_desc, bookId);
+
+            var message = $('<span>Book updated</span>').fadeOut(5000);
+            $('div.AddBookCont').find('div.message').append(message);
+        }
+    });
     
     
     $('div#books').on('click', 'a.cancelForm', function(e) {
@@ -104,7 +128,14 @@ $(document).ready(function() {
         e.preventDefault();
         var bookId = $(this).parents('div.book').data('book-id');
         $('[data-book-id = ' + bookId + ']').find('.editForm').slideUp();
-    
+
+        var title = $('[data-book-id=' + bookId + ']').find('.title').text();
+        var author = $('[data-book-id=' + bookId + ']').find('span.author').text();
+        var book_desc = $('[data-book-id=' + bookId + ']').find('span.desc').text();
+
+        $('[data-book-id =' + bookId + ']').find('input[name="author"]').val(author);
+        $('[data-book-id =' + bookId + ']').find('input[name="name"]').val(title);
+        $('[data-book-id =' + bookId + ']').find('input[name="book_desc"]').val(book_desc);
     });
 
     function addBook(authorVal, nameVal, book_descVal) {
@@ -138,6 +169,8 @@ $(document).ready(function() {
         var book_desc = $(this).parent().find('input[name="book_desc"]').prop('value');
 
 	    addBook(author, name, book_desc);
+        var message = $('<span>Book added</span>').fadeOut(5000);
+        $('div.AddBookCont').find('div.message').append(message);
     });
     
     function removeBook(bookId) {
@@ -163,8 +196,10 @@ $(document).ready(function() {
     
     $('div#books').on('click', 'a.removeBtn', function() {
         var bookId = $(this).parent().parent().data('book-id');
-        if ( confirm('Do you really want to delete this book: (id:' + bookId + ')') ) {
+        if (confirm('Do you really want to delete this book: (id:' + bookId + ')')) {
                 removeBook(bookId);
+                var message = $('<span>Book deleted</span>').fadeOut(5000);
+                $('div.AddBookCont').find('div.message').append(message);
         }
     });
 });
